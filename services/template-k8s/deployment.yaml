@@ -52,7 +52,6 @@ spec:
       containers:
       - name: {{.Values.name}}
         image: {{.Values.image}}
-        spec:
         resources:
           requests:
             memory: {{.Values.spec.containers.resources.requests.memory}}
