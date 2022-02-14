@@ -52,6 +52,14 @@ spec:
       containers:
       - name: {{.Values.name}}
         image: {{.Values.image}}
+        spec:
+        resources:
+          requests:
+            memory: {{.Values.spec.containers.resources.requests.memory}}
+            cpu: {{.Values.spec.containers.resources.requests.cpu}}
+          limits:
+            memory: {{.Values.spec.containers.resources.limits.memory}}
+            cpu: {{.Values.spec.containers.resources.limits.cpu}}
         {{- if or .Values.env.config .Values.env.secrets}}
         envFrom:
         {{- if .Values.env.config}}
