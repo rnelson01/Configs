@@ -12,6 +12,16 @@ namespace: ${infra.kubernetes.namespace}
 # ClusterIP | NodePort | LoadBalancer | ExternalName
 serviceType: LoadBalancer
 
+spec:
+  containers:
+    resources:
+      requests:
+        memory: "64Mi"
+        cpu: "250m"
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+
 # A Service can map an incoming port to any targetPort.
 # targetPort is where application is listening on inside the container.
 servicePort: 80
