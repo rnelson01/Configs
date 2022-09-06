@@ -1,0 +1,38 @@
+pipeline:
+  name: build template
+  identifier: build_template
+  projectIdentifier: rnciproj
+  orgIdentifier: default
+  tags: {}
+  properties:
+    ci:
+      codebase:
+        connectorRef: rngh
+        repoName: Configs
+        build: <+input>
+  stages:
+    - stage:
+        name: build
+        identifier: build
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: true
+          infrastructure:
+            type: KubernetesDirect
+            spec:
+              connectorRef: account.cidemoact
+              namespace: namespace
+              nodeSelector: {}
+              os: Linux
+          execution:
+            steps:
+              - step:
+                  type: Run
+                  name: run
+                  identifier: run
+                  spec:
+                    connectorRef: account.james_dockerhub
+                    image: ubuntu
+                    shell: Sh
+                    command: "echo echo "
