@@ -1,0 +1,14 @@
+inputSet:
+  identifier: "newdefault"
+  name: "newdefault"
+  orgIdentifier: "default"
+  projectIdentifier: "rnciproj"
+  pipeline:
+    identifier: "build_template"
+    properties:
+      ci:
+        codebase:
+          build:
+            type: "PR"
+            spec:
+              number: "<+trigger.prNumber>"
