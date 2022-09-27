@@ -1,0 +1,187 @@
+featureFlags:
+  flags:
+  - flag:
+      name: ALL_ALERT_MODAL
+      identifier: ALL_ALERT_MODAL
+      description: ""
+      permanent: false
+      spec:
+        type: string
+        default:
+          onVariation: QR
+          offVariation: expired
+        variations:
+        - identifier: QR
+          value: on|image|Harness FF Demo QR Code|<img src="./images/QR.svg" height="500"
+            class="center" >
+        - identifier: expired
+          value: "off"
+      environments:
+      - identifier: demo2
+        default:
+          onVariation: QR
+          offVariation: expired
+        state: "off"
+      - identifier: ffdemo
+        default:
+          onVariation: QR
+          offVariation: expired
+        state: "on"
+        targetRules:
+        - targets:
+          - identifier: Guest
+          variation: expired
+        - targets:
+          - identifier: ryannelsonharnessio
+          variation: QR
+  - flag:
+      name: Home_Banner
+      identifier: Home_Banner
+      description: ""
+      permanent: true
+      spec:
+        type: boolean
+        default:
+          onVariation: "true"
+          offVariation: "true"
+        variations:
+        - identifier: "true"
+          value: "true"
+        - identifier: "false"
+          value: "false"
+      environments:
+      - identifier: demo2
+        default:
+          onVariation: "true"
+          offVariation: "true"
+        state: "off"
+      - identifier: ffdemo
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        state: "on"
+        targetRules:
+        - targets:
+          - identifier: Guest
+          variation: "true"
+        - targets:
+          - identifier: ryannelsonharnessio
+          variation: "false"
+  - flag:
+      name: Home_Logo
+      identifier: Home_Logo
+      description: ""
+      permanent: false
+      spec:
+        type: string
+        default:
+          onVariation: harness
+          offVariation: default
+        variations:
+        - identifier: harness
+          value: https://mma.prnewswire.com/media/779232/Harnes_logo_horizontal.jpg?p=twitter
+        - identifier: back
+          value: https://1000logos.net/wp-content/uploads/2019/08/Arkansas-Razorbacks-Logo.jpg
+        - identifier: default
+          value: "null"
+        - identifier: "no"
+          value: https://i.giphy.com/media/11NBUrJDuMd5As/giphy.webp
+      environments:
+      - identifier: demo2
+        default:
+          onVariation: harness
+          offVariation: default
+        state: "off"
+      - identifier: ffdemo
+        default:
+          onVariation: harness
+          offVariation: harness
+        state: "on"
+        targetRules:
+        - targets:
+          - identifier: Guest
+          variation: harness
+        - targets:
+          - identifier: ryannelsonharnessio
+          variation: default
+  - flag:
+      name: Home_Maintenance
+      identifier: Home_Maintenance
+      description: ""
+      permanent: false
+      spec:
+        type: boolean
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        variations:
+        - identifier: "true"
+          value: "true"
+        - identifier: "false"
+          value: "false"
+      environments:
+      - identifier: demo2
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        state: "off"
+      - identifier: ffdemo
+        default:
+          onVariation: "true"
+          offVariation: "false"
+        state: "on"
+        targetRules:
+        - targets:
+          - identifier: Guest
+          variation: "false"
+        - targets:
+          - identifier: ryannelsonharnessio
+          variation: "true"
+  - flag:
+      name: Index_SignUp_Enable
+      identifier: Index_SignUp_Enable
+      description: ""
+      permanent: false
+      spec:
+        type: string
+        default:
+          onVariation: "on"
+          offVariation: "off"
+        variations:
+        - identifier: "on"
+          value: "on"
+        - identifier: "off"
+          value: "off"
+      prerequisites:
+      - flagIdentifier: Home_Maintenance
+        variations:
+        - "false"
+      environments:
+      - identifier: demo2
+        default:
+          onVariation: "on"
+          offVariation: "off"
+        state: "off"
+      - identifier: ffdemo
+        default:
+          onVariation: "on"
+          offVariation: "off"
+        state: "on"
+        rules:
+        - priority: 0
+          serve:
+            serveVariation: "on"
+          clauses:
+          - attribute: ""
+            op: segmentMatch
+            values:
+            - newtest
+        targetRules:
+        - targetGroups:
+          - identifier: newtest
+          targets:
+          - identifier: ryannelsonharnessio
+          - identifier: Guest
+          variation: "on"
+  projectIdentifier: rnff
+  orgIdentifier: default
