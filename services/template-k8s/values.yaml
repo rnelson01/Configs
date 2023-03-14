@@ -1,9 +1,9 @@
 name: <+service.name>
 replicas: 1
 
-image: <+artifact.image>
+image: <+artifact.primary.image>
 imagePolicy: Always
-dockercfg: <+artifact.imagePullSecret>
+dockercfg: <+artifact.primary.imagePullSecret>
 
 createNamespace: true
 namespace: <+infra.namespace>
