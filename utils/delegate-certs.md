@@ -22,6 +22,7 @@ kubectl apply -f configmap_ca-certs.yaml
 curl -LO https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv5.0.1/kustomize_v5.0.1_linux_amd64.tar.gz
 tar -xf kustomize_v5.0.1_linux_amd64.tar.gz
 sudo install -o root -g root -m 0755 kustomize /usr/local/bin/kustomize
+```
 ```bash
 # !!! change delegate_name
 delegate_name="DELEGATE_NAME_GOES_HERE"
