@@ -15,12 +15,6 @@ kubectl create configmap -n "${delegate_ns}" ca-certs \
 
 kubectl apply -f configmap_ca-certs.yaml
 ```
-## Install kustomize (locally) if not already present
-```bash
-curl -LO https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv5.0.1/kustomize_v5.0.1_linux_amd64.tar.gz
-tar -xf kustomize_v5.0.1_linux_amd64.tar.gz
-sudo install -o root -g root -m 0755 kustomize /usr/local/bin/kustomize
-```
 
 ## Install / upgrade delegate with INIT_SCRIPT and extra env vars to trust certificates
 
@@ -33,7 +27,7 @@ cat <<EOF > post-render.sh
 
 cat <&0 > all.yaml
 
-kustomize build . && rm all.yaml
+kustomize && rm all.yaml
 EOF
 
 cat <<EOF > kustomization.yaml
