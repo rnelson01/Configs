@@ -27,7 +27,7 @@ cat <<EOF > post-render.sh
 
 cat <&0 > all.yaml
 
-kustomize && rm all.yaml
+kubectl kustomize && rm all.yaml
 EOF
 
 cat <<EOF > kustomization.yaml
