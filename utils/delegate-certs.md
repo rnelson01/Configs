@@ -72,7 +72,7 @@ data:
     done
     update-ca-trust
   ADDITIONAL_CERTS_PATH: "/tmp/harness/ca-certs/cacerts.pem"
-  CI_MOUNT_VOLUMES: "/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem:/etc/ssl/certs/ca-bundle.crt,/tmp/harness/ca-certs/cacerts.pem:/kaniko/ssl/certs/additional-ca-cert-bundle.crt,/tmp/harness/ca-certs/cacerts.pem:/shared/customer_artifacts/certificates/cacerts.pem"
+  CI_MOUNT_VOLUMES: "/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem:/etc/ssl/certs/ca-bundle.crt,/tmp/harness/ca-certs/cacerts.pem:/kaniko/ssl/certs/additional-ca-cert-bundle.crt"
 EOF
 
 cat <<EOF > patch-delegate-deployment.yaml
