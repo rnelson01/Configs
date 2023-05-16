@@ -54,7 +54,7 @@ pipeline:
                   identifier: BuildAndPushDockerRegistry_1
                   spec:
                     connectorRef: rndockerhub
-                    repo: delegate
+                    repo: ryannelson01/delegate
                     tags:
                       - <+pipeline.variables.delegate_type>
                     dockerfile: <+pipeline.stages.Build.spec.execution.steps.Run_1.output.outputVariables.del_docker_file>
