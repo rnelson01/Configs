@@ -61,6 +61,5 @@ pipeline:
   variables:
     - name: delegate_type
       type: String
-      default: full_rhel
       description: ""
       value: <+input>.allowedValues(full_rhel,full_ubuntu,minimal)
