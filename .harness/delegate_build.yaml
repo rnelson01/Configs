@@ -27,6 +27,27 @@ pipeline:
           execution:
             steps:
               - step:
+                  type: Run
+                  name: Run_1
+                  identifier: Run_1
+                  spec:
+                    shell: Bash
+                    command: |
+                      case <+pipeline.variables.delegate_type> in
+
+                        "full_rhel")
+                          STATEMENTS
+                          ;;
+
+                        "full_ubuntu")
+                          STATEMENTS
+                          ;;
+
+                        "minimal")
+                          STATEMENTS
+                          ;;
+                      esac
+              - step:
                   type: BuildAndPushDockerRegistry
                   name: BuildAndPushDockerRegistry_1
                   identifier: BuildAndPushDockerRegistry_1
@@ -36,3 +57,9 @@ pipeline:
                     tags:
                       - <+pipeline.sequenceId>
                     dockerfile: ./<+pipeline.variables.delegate_type>
+  variables:
+    - name: delegate_type
+      type: String
+      default: full_rhel
+      description: ""
+      value: <+input>.allowedValues(full_rhel,full_ubuntu,minimal)
