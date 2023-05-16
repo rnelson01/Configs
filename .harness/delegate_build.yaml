@@ -36,17 +36,19 @@ pipeline:
                       case <+pipeline.variables.delegate_type> in
 
                         "full_rhel")
-                          STATEMENTS
+                          export del_docker_file = "./Dockerfile"
                           ;;
 
                         "full_ubuntu")
-                          STATEMENTS
+                          export del_docker_file = "./Dockerfile-ubuntu"
                           ;;
 
                         "minimal")
-                          STATEMENTS
+                          export del_docker_file = "./Dockerfile-minimal"
                           ;;
                       esac
+                    outputVariables:
+                      - name: del_docker_file
               - step:
                   type: BuildAndPushDockerRegistry
                   name: BuildAndPushDockerRegistry_1
