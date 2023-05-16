@@ -26,6 +26,13 @@ pipeline:
           execution:
             steps:
               - step:
+                  type: Plugin
+                  name: GitHub Action
+                  identifier: GitHub_Action
+                  spec:
+                    connectorRef: account.Harness_Docker_Connector
+                    image: plugins/github-actions
+              - step:
                   type: Run
                   name: Delegate Type
                   identifier: Run_1
