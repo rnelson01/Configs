@@ -7,8 +7,7 @@ pipeline:
   properties:
     ci:
       codebase:
-        connectorRef: account.Public_Github
-        repoName: harness/delegate-dockerfile
+        connectorRef: delegate
         build: <+input>
   stages:
     - stage:
