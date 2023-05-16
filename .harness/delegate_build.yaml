@@ -1,0 +1,38 @@
+pipeline:
+  name: delegate_build
+  identifier: delegate_build
+  projectIdentifier: RN_Sandbox
+  orgIdentifier: SE_Sandbox
+  tags: {}
+  properties:
+    ci:
+      codebase:
+        connectorRef: account.Public_Github
+        repoName: harness/delegate-dockerfile
+        build: <+input>
+  stages:
+    - stage:
+        name: Build
+        identifier: Build
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: true
+          platform:
+            os: Linux
+            arch: Amd64
+          runtime:
+            type: Cloud
+            spec: {}
+          execution:
+            steps:
+              - step:
+                  type: BuildAndPushDockerRegistry
+                  name: BuildAndPushDockerRegistry_1
+                  identifier: BuildAndPushDockerRegistry_1
+                  spec:
+                    connectorRef: rndockerhub
+                    repo: delegate
+                    tags:
+                      - <+pipeline.sequenceId>
+                    dockerfile: ./<+pipeline.variables.delegate_type>
