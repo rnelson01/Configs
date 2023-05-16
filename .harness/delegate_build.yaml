@@ -50,7 +50,7 @@ pipeline:
                       - name: del_docker_file
               - step:
                   type: BuildAndPushDockerRegistry
-                  name: BuildAndPushDockerRegistry_1
+                  name: Build and Push to DockerHub
                   identifier: BuildAndPushDockerRegistry_1
                   spec:
                     connectorRef: rndockerhub
