@@ -35,15 +35,15 @@ pipeline:
                       case <+pipeline.variables.delegate_type> in
 
                         "full_rhel")
-                          export del_docker_file = "./Dockerfile"
+                          export del_docker_file="./Dockerfile"
                           ;;
 
                         "full_ubuntu")
-                          export del_docker_file = "./Dockerfile-ubuntu"
+                          export del_docker_file="./Dockerfile-ubuntu"
                           ;;
 
                         "minimal")
-                          export del_docker_file = "./Dockerfile-minimal"
+                          export del_docker_file="./Dockerfile-minimal"
                           ;;
                       esac
                     outputVariables:
