@@ -35,8 +35,10 @@ pipeline:
                     privileged: true
                     settings:
                       uses: <+input>
-                      with: "path: pom.xml"
-                      env: <+secrets.getValue("github_pat")>
+                      with:
+                        path: pom.xml
+                      env:
+                        GITHUB_TOKEN: <+secrets.getValue("github_pat")>
               - step:
                   type: Run
                   name: Delegate Type
