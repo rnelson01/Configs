@@ -34,11 +34,9 @@ pipeline:
                     image: plugins/github-actions
                     privileged: true
                     settings:
-                      uses: myorg/private-action-step@v1
-                      with:
-                        path: pom.xml
-                      env:
-                        GITHUB_TOKEN: <+secrets.getValue("github_pat")>
+                      uses: <+input>
+                      with: "path: pom.xml"
+                      env: <+secrets.getValue("github_pat")>
               - step:
                   type: Run
                   name: Delegate Type
