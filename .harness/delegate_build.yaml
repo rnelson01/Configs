@@ -56,8 +56,8 @@ pipeline:
                     connectorRef: rndockerhub
                     repo: delegate
                     tags:
-                      - <+pipeline.sequenceId>
-                    dockerfile: ./<+pipeline.variables.delegate_type>
+                      - <+pipeline.variables.delegate_type>-
+                    dockerfile: <+pipeline.stages.Build.spec.execution.steps.Run_1.output.outputVariables.del_docker_file>
   variables:
     - name: delegate_type
       type: String
