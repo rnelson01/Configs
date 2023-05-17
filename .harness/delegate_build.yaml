@@ -42,8 +42,6 @@ pipeline:
                           export del_docker_file="./Dockerfile-minimal"
                           ;;
                       esac
-                    envVariables:
-                      PLUGIN_NO_PUSH: "true"
                     outputVariables:
                       - name: del_docker_file
               - step:
