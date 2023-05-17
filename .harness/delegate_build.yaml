@@ -60,6 +60,7 @@ pipeline:
                     dockerfile: <+pipeline.stages.Build.spec.execution.steps.Run_1.output.outputVariables.del_docker_file>
                     buildArgs:
                       "--no-push": "true"
+                      "--no-push-cache": "true"
   variables:
     - name: delegate_type
       type: String
