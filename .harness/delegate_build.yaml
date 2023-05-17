@@ -50,12 +50,14 @@ pipeline:
                   identifier: BuildAndPushDockerRegistry_1
                   spec:
                     connectorRef: rndockerhub
+                    envVariables:
+                      PLUGIN_NO_PUSH: true
                     repo: ryannelson01/delegate
                     tags:
                       - <+pipeline.variables.delegate_type>
                     dockerfile: <+pipeline.stages.Build.spec.execution.steps.Run_1.output.outputVariables.del_docker_file>
                     buildArgs:
-                      nopush: "true"
+                      "--no-push": "true"
           infrastructure:
             type: KubernetesDirect
             spec:
