@@ -53,8 +53,9 @@ pipeline:
                   name: Build and Push to DockerHub
                   identifier: BuildAndPushDockerRegistry_1
                   spec:
-                    envVariables:
-                      PLUGIN_NO_PUSH: "true"
+                    settings:
+                      envVariables:
+                        PLUGIN_NO_PUSH: "true"
                     connectorRef: rndockerhub
                     repo: ryannelson01/delegate
                     tags:
