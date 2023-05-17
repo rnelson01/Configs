@@ -27,6 +27,23 @@ pipeline:
             steps:
               - step:
                   type: Run
+                  spec:
+                    connectorRef: account.Harness_Docker_Connector
+                    image: alpine/git
+                    shell: Sh
+                    command: |-
+                      cat <<EOF > ${HOME}/.netrc
+                      machine ${DRONE_NETRC_MACHINE}
+                      login ${DRONE_NETRC_USERNAME}
+                      password ${DRONE_NETRC_PASSWORD}
+                      EOF
+                      git fetch --tags --unshallow --prune
+                    envVariables:
+                      PLUGIN_NO_PUSH: "true"
+                  name: asasdasd
+                  identifier: asasdasd
+              - step:
+                  type: Run
                   name: Delegate Type
                   identifier: Run_1
                   spec:
@@ -53,15 +70,13 @@ pipeline:
                   name: Build and Push to DockerHub
                   identifier: BuildAndPushDockerRegistry_1
                   spec:
-                    settings:
-                      PLUGIN_NO_PUSH: true
+                    envVariables:
+                      PLUGIN_NO_PUSH: "true"
                     connectorRef: rndockerhub
                     repo: ryannelson01/delegate
                     tags:
                       - <+pipeline.variables.delegate_type>
                     dockerfile: <+pipeline.stages.Build.spec.execution.steps.Run_1.output.outputVariables.del_docker_file>
-                    buildArgs:
-                      "--no-push ": "true"
   variables:
     - name: delegate_type
       type: String
