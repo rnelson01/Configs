@@ -48,6 +48,10 @@ pipeline:
                   type: BuildAndPushDockerRegistry
                   name: Build and Push to DockerHub
                   identifier: BuildAndPushDockerRegistry_1
+                  settings:
+                    no_push: true
+                    env:
+                      PLUGIN_NO_PUSH: true
                   envVariables:
                     PLUGIN_NO_PUSH: true
                   spec:
