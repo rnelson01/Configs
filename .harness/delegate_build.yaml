@@ -17,12 +17,6 @@ pipeline:
         type: CI
         spec:
           cloneCodebase: true
-          platform:
-            os: Linux
-            arch: Amd64
-          runtime:
-            type: Cloud
-            spec: {}
           execution:
             steps:
               - step:
@@ -30,6 +24,8 @@ pipeline:
                   name: Delegate Type
                   identifier: Run_1
                   spec:
+                    connectorRef: account.Harness_Docker_Connector
+                    image: ubuntu
                     shell: Bash
                     command: |
                       case <+pipeline.variables.delegate_type> in
@@ -61,6 +57,14 @@ pipeline:
                     tags:
                       - <+pipeline.variables.delegate_type>
                     dockerfile: <+pipeline.stages.Build.spec.execution.steps.Run_1.output.outputVariables.del_docker_file>
+          infrastructure:
+            type: KubernetesDirect
+            spec:
+              connectorRef: account.harness_demo
+              namespace: harness-delegate-ng
+              automountServiceAccountToken: true
+              nodeSelector: {}
+              os: Linux
   variables:
     - name: delegate_type
       type: String
