@@ -59,7 +59,7 @@ pipeline:
                       - <+pipeline.variables.delegate_type>
                     dockerfile: <+pipeline.stages.Build.spec.execution.steps.Run_1.output.outputVariables.del_docker_file>
                     buildArgs:
-                      tar-path: "/dev/null "
+                      no-push: T
   variables:
     - name: delegate_type
       type: String
