@@ -27,23 +27,6 @@ pipeline:
             steps:
               - step:
                   type: Run
-                  spec:
-                    connectorRef: account.Harness_Docker_Connector
-                    image: alpine/git
-                    shell: Sh
-                    command: |-
-                      cat <<EOF > ${HOME}/.netrc
-                      machine ${DRONE_NETRC_MACHINE}
-                      login ${DRONE_NETRC_USERNAME}
-                      password ${DRONE_NETRC_PASSWORD}
-                      EOF
-                      git fetch --tags --unshallow --prune
-                    envVariables:
-                      PLUGIN_NO_PUSH: "true"
-                  name: asasdasd
-                  identifier: asasdasd
-              - step:
-                  type: Run
                   name: Delegate Type
                   identifier: Run_1
                   spec:
