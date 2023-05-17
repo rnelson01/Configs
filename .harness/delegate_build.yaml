@@ -74,7 +74,8 @@ pipeline:
                     tags:
                       - <+pipeline.variables.delegate_type>
                     dockerfile: <+pipeline.stages.Build.spec.execution.steps.Run_1.output.outputVariables.del_docker_file>
-                    settings: nopush
+                    settings:
+                      nopush: true
   variables:
     - name: delegate_type
       type: String
