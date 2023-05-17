@@ -61,22 +61,6 @@ pipeline:
                     tags:
                       - <+pipeline.variables.delegate_type>
                     dockerfile: <+pipeline.stages.Build.spec.execution.steps.Run_1.output.outputVariables.del_docker_file>
-              - step:
-                  type: Plugin
-                  spec:
-                    connectorRef: account.Harness_Docker_Connector
-                    image: plugins/github-actions
-                    privileged: true
-                    settings:
-                      uses: repo/tag
-                      with:
-                        path: pom.xml
-                        credentials: <+secrets.getValue("gcp_token")>
-                      env:
-                        GITHUB_TOKEN: <+secrets.getValue("github_pat")>
-                  description: "edit yaml to configure uses: [repo]@[tag] example actions/setup-go@v3 , with: key:value example path: pom.xml , env: key:value example GITHUB_TOKEN: <+secrets.getValue(\"github_pat\")>"
-                  name: fafaf
-                  identifier: fafaf
   variables:
     - name: delegate_type
       type: String
