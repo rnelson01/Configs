@@ -74,5 +74,5 @@ pipeline:
       value: <+input>.allowedValues(full_rhel,full_ubuntu,minimal)
     - name: disable_push_artifact
       type: String
-      description: if true docker build and push step will not push image
+      description: if true docker image will not be pushed
       value: <+input>.allowedValues(true,false)
