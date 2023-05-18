@@ -70,9 +70,9 @@ pipeline:
   variables:
     - name: delegate_type
       type: String
-      description: ""
+      description: select rhel, ubuntu or minimal
       value: <+input>.allowedValues(full_rhel,full_ubuntu,minimal)
     - name: disable_push_artifact
       type: String
-      description: if true docker image will not be pushed
+      description: if true image will not be pushed
       value: <+input>.allowedValues(true,false)
