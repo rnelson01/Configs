@@ -66,9 +66,13 @@ pipeline:
           - name: PLUGIN_NO_PUSH
             type: String
             description: ""
-            value: "true"
+            value: <+pipeline.variables.disable_push_artifact>
   variables:
     - name: delegate_type
       type: String
       description: ""
       value: <+input>.allowedValues(full_rhel,full_ubuntu,minimal)
+    - name: disable_push_artifact
+      type: String
+      description: if true docker build and push step will not push image
+      value: <+input>.allowedValues(true,false)
