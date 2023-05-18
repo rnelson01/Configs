@@ -64,6 +64,11 @@ pipeline:
               automountServiceAccountToken: true
               nodeSelector: {}
               os: Linux
+        variables:
+          - name: PLUGIN_NO_PUSH
+            type: String
+            description: ""
+            value: "true"
   variables:
     - name: delegate_type
       type: String
